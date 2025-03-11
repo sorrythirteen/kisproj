@@ -4,6 +4,7 @@
 <div class="container">
     <h1>Contracts</h1>
     <a href="{{ route('contracts.create') }}" class="btn btn-primary">Create Contract</a>
+    <a href="{{ route('contracts.export') }}" class="btn btn-success">Export Contracts</a>
     <table class="table">
         <thead>
             <tr>

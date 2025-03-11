@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contract; // Импортируем модель Contract
-use App\Models\Supplier; // Импортируем модель Supplier
+use App\Models\Contract;
+use App\Models\Supplier;
+use App\Exports\ContractsExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
@@ -29,7 +31,7 @@ class ContractController extends Controller
             'delivery_date' => 'required',
         ]);
 
-        Contract::create($request->all());
+        Contract::create($request->except('_token'));
         return redirect()->route('contracts.index')->with('success', 'Contract created successfully.');
     }
 
@@ -53,7 +55,7 @@ class ContractController extends Controller
             'delivery_date' => 'required',
         ]);
 
-        $contract->update($request->all());
+        $contract->update($request->except('_token'));
         return redirect()->route('contracts.index')->with('success', 'Contract updated successfully.');
     }
 
@@ -61,5 +63,10 @@ class ContractController extends Controller
     {
         $contract->delete();
         return redirect()->route('contracts.index')->with('success', 'Contract deleted successfully.');
+    }
+
+    public function exportContracts()
+    {
+        return Excel::download(new ContractsExport, 'contracts.xlsx');
     }
 }

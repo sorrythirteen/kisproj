@@ -11,3 +11,5 @@ Route::resource('suppliers', SupplierController::class);
 Route::resource('contracts', ContractController::class);
 Route::resource('materials', MaterialController::class);
 Route::resource('accounting_entries', AccountingEntryController::class);
+Route::resource('contracts', ContractController::class);
+Route::get('export-contracts', [ContractController::class, 'exportContracts'])->name('contracts.export');
