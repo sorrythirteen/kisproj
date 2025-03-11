@@ -6,16 +6,20 @@
     <title>Lumber Management</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
         body {
-        font-family: 'Courier New', Courier, monospace;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        background-image: url('/images/background.jpg'); /* Путь к изображению */
-        background-size: cover; /* Масштабирование фона */
-        background-position: center; /* Центрирование фона */
-        background-repeat: no-repeat; /* Отключение повторения фона */
-    }
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-image: url('/images/background.jpg'); /* Путь к изображению */
+            background-size: cover; /* Масштабирование фона */
+            background-position: center; /* Центрирование фона */
+            background-repeat: no-repeat; /* Отключение повторения фона */
+        }
 
         .navbar {
             background-color: #fff !important;
@@ -30,23 +34,24 @@
 
         .nav-link:hover {
             color: #0066cc !important;
-            transform: translateY(-2px)
+            transform: translateY(-2px);
         }
 
         .container {
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border-radius: 30px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 95%; /* Ширина контейнера */
-        max-width: 100%; /* Максимальная ширина */
-        margin: 20px auto; 
-        text-align: auto; /* Центрирование текста внутри контейнера */
-    }
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 95%; /* Ширина контейнера */
+            max-width: 100%; /* Максимальная ширина */
+            margin: 20px auto;
+            text-align: auto; /* Центрирование текста внутри контейнера */
+        }
+
         .table {
-        margin: auto; /* Центрирование таблицы внутри контейнера */
-        width: 50% auto;
-    }
+            margin: auto; /* Центрирование таблицы внутри контейнера */
+            width: 50% auto;
+        }
 
         /* Новые стили для кнопок */
         .btn-minimal {
@@ -62,7 +67,7 @@
         }
 
         .btn-minimal:hover {
-            background-color:rgb(55, 71, 79); /* Темно-серый цвет при наведении */
+            background-color: rgb(55, 71, 79); /* Темно-серый цвет при наведении */
             transform: translateY(-2px); /* Легкий эффект поднятия */
         }
 
@@ -107,9 +112,15 @@
         .fade-in {
             animation: fadeIn 0.8s ease-in-out;
         }
+
+        /* Align the logout and greeting to the right */
+        .navbar-nav.ml-auto {
+            margin-left: auto !important;
+        }
     </style>
 </head>
 <body>
+    @auth
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand fade-in" href="{{ route('dashboard') }}">КИС-Лесопилка</a>
         <div class="collapse navbar-collapse">
@@ -130,8 +141,20 @@
                     <a class="nav-link fade-in" href="{{ route('accounting_entries.index') }}">Бухгалтерские записи</a>
                 </li>
             </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span class="nav-link">Здравствуйте, {{ auth()->user()->name }}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выход</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
         </div>
     </nav>
+    @endauth
     <div class="container mt-4 fade-in">
         <a href="{{ route('dashboard') }}">
             <!-- <button class="btn-minimal">Go to Dashboard</button> -->
