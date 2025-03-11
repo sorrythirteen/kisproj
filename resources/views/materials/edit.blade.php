@@ -1,0 +1,24 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h1>Edit Material</h1>
+    <form action="{{ route('materials.update', $material->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" value="{{ $material->name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" name="price" class="form-control" value="{{ $material->price }}" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" class="form-control" value="{{ $material->quantity }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+@endsection
