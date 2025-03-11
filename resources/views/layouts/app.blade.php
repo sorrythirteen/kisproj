@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-family: 'Helvetica', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+        font-family: 'Courier New', Courier, monospace;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-image: url('/images/background.jpg'); /* Путь к изображению */
+        background-size: cover; /* Масштабирование фона */
+        background-position: center; /* Центрирование фона */
+        background-repeat: no-repeat; /* Отключение повторения фона */
+    }
 
         .navbar {
             background-color: #fff !important;
@@ -30,13 +33,19 @@
         }
 
         .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 960px;
-            margin: 20px auto;
-        }
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 90%; /* Ширина контейнера */
+        max-width: 100%; /* Максимальная ширина */
+        margin: 20px auto; 
+        text-align: center; /* Центрирование текста внутри контейнера */
+    }
+        .table {
+        margin: auto; /* Центрирование таблицы внутри контейнера */
+        width: 50% auto;
+    }
 
         /* Новые стили для кнопок */
         .btn-minimal {
@@ -52,13 +61,13 @@
         }
 
         .btn-minimal:hover {
-            background-color: #455a64; /* Темно-серый цвет при наведении */
+            background-color:rgb(55, 71, 79); /* Темно-серый цвет при наведении */
             transform: translateY(-2px); /* Легкий эффект поднятия */
         }
 
         .btn-minimal:active {
             background-color: #37474f; /* Еще более темный серый при нажатии */
-            transform: translateY(0);
+            transform: translateY(-2px);
         }
 
         .btn-outline {
@@ -101,7 +110,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand fade-in" href="#">Lumber Management</a>
+        <a class="navbar-brand fade-in" href="#">КИС-Лесопилка</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -121,7 +130,7 @@
     </nav>
     <div class="container mt-4 fade-in">
         <a href="{{ route('dashboard') }}">
-            <button class="btn-minimal">Go to Dashboard</button>
+            <!-- <button class="btn-minimal">Go to Dashboard</button> -->
         </a>
         @yield('content')
     </div>

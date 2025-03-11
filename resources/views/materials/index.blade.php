@@ -2,15 +2,17 @@
 
 @section('content')
 <div class="container">
-    <h1>Materials</h1>
-    <a href="{{ route('materials.create') }}" class="btn btn-primary">Create Material</a>
+    <h1>Материалы</h1>
+    <div class="mb-3">
+        <a href="{{ route('materials.create') }}" class="btn-minimal">Добавить материал</a>
+    </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Actions</th>
+                <th>Имя</th>
+                <th>Цена</th>
+                <th>Количетсво</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -20,13 +22,15 @@
                 <td>{{ $material->price }}</td>
                 <td>{{ $material->quantity }}</td>
                 <td>
-                    <a href="{{ route('materials.show', $material->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('materials.edit', $material->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('materials.destroy', $material->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <div class="d-flex">
+                        <a href="{{ route('materials.show', $material->id) }}" class="btn-outline mr-2">Просмотр</a>
+                        <a href="{{ route('materials.edit', $material->id) }}" class="btn-outline mr-2">Редактировать</a>
+                        <form action="{{ route('materials.destroy', $material->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-minimal">Удалить</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

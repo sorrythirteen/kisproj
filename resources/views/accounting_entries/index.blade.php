@@ -2,15 +2,17 @@
 
 @section('content')
 <div class="container">
-    <h1>Accounting Entries</h1>
-    <a href="{{ route('accounting_entries.create') }}" class="btn btn-primary">Create Accounting Entry</a>
+    <h1>Бухгалтерия</h1>
+    <div class="mb-3">
+        <a href="{{ route('accounting_entries.create') }}" class="btn-minimal">Создать учет</a>
+    </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Contract</th>
-                <th>Amount</th>
-                <th>Payment Date</th>
-                <th>Actions</th>
+                <th>Договор</th>
+                <th>Количетсво</th>
+                <th>Дата оплаты</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -20,13 +22,15 @@
                 <td>{{ $accountingEntry->amount }}</td>
                 <td>{{ $accountingEntry->payment_date }}</td>
                 <td>
-                    <a href="{{ route('accounting_entries.show', $accountingEntry->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('accounting_entries.edit', $accountingEntry->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('accounting_entries.destroy', $accountingEntry->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <div class="d-flex">
+                        <a href="{{ route('accounting_entries.show', $accountingEntry->id) }}" class="btn-outline mr-2">Просмотр</a>
+                        <a href="{{ route('accounting_entries.edit', $accountingEntry->id) }}" class="btn-outline mr-2">Редактировать</a>
+                        <form action="{{ route('accounting_entries.destroy', $accountingEntry->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-minimal">Удалить</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

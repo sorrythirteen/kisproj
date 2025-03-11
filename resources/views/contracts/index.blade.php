@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <h1>Contracts</h1>
+    <h1>Договоры</h1>
     <div class="mb-3">
-        <a href="{{ route('contracts.create') }}" class="btn-minimal">Create Contract</a>
-        <a href="{{ route('contracts.export') }}" class="btn-outline" style="margin-left: 10px;">Export Contracts</a>
+        <a href="{{ route('contracts.create') }}" class="btn-minimal">Создать договор</a>
+        <a href="{{ route('contracts.export') }}" class="btn-outline" style="margin-left: 10px;">Экспорт в Excel</a>
     </div>
     <table class="table">
         <thead>
