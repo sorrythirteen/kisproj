@@ -47,17 +47,19 @@ class ContractController extends Controller
     }
 
     public function update(Request $request, Contract $contract)
-    {
-        $request->validate([
-            'supplier_id' => 'required',
-            'amount' => 'required',
-            'quantity' => 'required',
-            'delivery_date' => 'required',
-        ]);
+{
+    $request->validate([
+        'supplier_id' => 'required',
+        'amount' => 'required',
+        'quantity' => 'required',
+        'delivery_date' => 'required',
+        'status' => 'required|in:in_progress,completed', // Проверка на допустимые значения статуса
+    ]);
 
-        $contract->update($request->except('_token'));
-        return redirect()->route('contracts.index')->with('success', 'Contract updated successfully.');
-    }
+    $contract->update($request->except('_token'));
+    return redirect()->route('contracts.index')->with('success', 'Contract updated successfully.');
+}
+
 
     public function destroy(Contract $contract)
     {

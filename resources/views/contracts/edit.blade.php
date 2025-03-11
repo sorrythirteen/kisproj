@@ -26,6 +26,14 @@
             <label for="delivery_date">Delivery Date</label>
             <input type="date" name="delivery_date" class="form-control" value="{{ $contract->delivery_date }}" required>
         </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select name="status" id="status" class="form-control" required>
+                <option value="in_progress" {{ $contract->status == 'in_progress' ? 'selected' : '' }}>In Progress</option>
+                <option value="completed" {{ $contract->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                <!-- Добавьте другие статусы, если необходимо -->
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

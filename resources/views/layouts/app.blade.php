@@ -30,6 +30,7 @@
 
         .nav-link:hover {
             color: #0066cc !important;
+            transform: translateY(-2px)
         }
 
         .container {
@@ -37,10 +38,10 @@
         padding: 20px;
         border-radius: 30px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 90%; /* Ширина контейнера */
+        width: 95%; /* Ширина контейнера */
         max-width: 100%; /* Максимальная ширина */
         margin: 20px auto; 
-        text-align: center; /* Центрирование текста внутри контейнера */
+        text-align: auto; /* Центрирование текста внутри контейнера */
     }
         .table {
         margin: auto; /* Центрирование таблицы внутри контейнера */
@@ -104,15 +105,18 @@
         }
 
         .fade-in {
-            animation: fadeIn 0.3s ease-in-out;
+            animation: fadeIn 0.8s ease-in-out;
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand fade-in" href="#">КИС-Лесопилка</a>
+        <a class="navbar-brand fade-in" href="{{ route('dashboard') }}">КИС-Лесопилка</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link fade-in" href="{{ route('dashboard') }}">Дашборд</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link fade-in" href="{{ route('suppliers.index') }}">Поставщики</a>
                 </li>
