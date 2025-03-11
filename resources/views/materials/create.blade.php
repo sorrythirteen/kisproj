@@ -2,22 +2,22 @@
 
 @section('content')
 <div class="container">
-    <h1>Create Material</h1>
+    <h1>Добавить материал</h1>
     <form action="{{ route('materials.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Имя</label>
             <input type="text" name="name" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="price">Price</label>
+            <label for="price">Цена</label>
             <input type="text" name="price" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="quantity">Quantity</label>
+            <label for="quantity">Количество</label>
             <input type="number" name="quantity" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn-outline">Добавить</button>
     </form>
 </div>
 @endsection

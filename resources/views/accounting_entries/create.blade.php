@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Create Accounting Entry</h1>
+    <h1>Добавить учет</h1>
     <form action="{{ route('accounting_entries.store') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -21,7 +21,7 @@
             <label for="payment_date">Дата оплаты</label>
             <input type="date" name="payment_date" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Создать</button>
+        <button type="submit" class="btn-outline mr-2">Создать</button>
     </form>
 </div>
 @endsection

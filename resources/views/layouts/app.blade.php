@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumber Management</title>
+    <title>Лесопилка</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body, html {
@@ -18,7 +18,9 @@
             background-image: url('/images/background.jpg'); /* Путь к изображению */
             background-size: cover; /* Масштабирование фона */
             background-position: center; /* Центрирование фона */
-            background-repeat: no-repeat; /* Отключение повторения фона */
+            background-repeat: repeat; /* Отключение повторения фона */
+            display: flex;
+            flex-direction: column;
         }
 
         .navbar {
