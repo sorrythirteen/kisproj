@@ -5,28 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumber Management</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #fff !important;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: #333 !important;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #0066cc !important;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 960px;
+            margin: 20px auto;
+        }
+
+        /* Новые стили для кнопок */
+        .btn-minimal {
+            background-color: #607d8b; /* Основной серый цвет */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-minimal:hover {
+            background-color: #455a64; /* Темно-серый цвет при наведении */
+            transform: translateY(-2px); /* Легкий эффект поднятия */
+        }
+
+        .btn-minimal:active {
+            background-color: #37474f; /* Еще более темный серый при нажатии */
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #607d8b;
+            border: 2px solid #607d8b;
+            border-radius: 5px;
+            padding: 13px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background-color: #607d8b;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline:active {
+            background-color: #455a64;
+            color: #fff;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Lumber Management</a>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand fade-in" href="#">Lumber Management</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('suppliers.index') }}">Suppliers</a>
+                    <a class="nav-link fade-in" href="{{ route('suppliers.index') }}">Поставщики</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contracts.index') }}">Contracts</a>
+                    <a class="nav-link fade-in" href="{{ route('contracts.index') }}">Договоры</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('materials.index') }}">Materials</a>
+                    <a class="nav-link fade-in" href="{{ route('materials.index') }}">Материалы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('accounting_entries.index') }}">Accounting Entries</a>
+                    <a class="nav-link fade-in" href="{{ route('accounting_entries.index') }}">Бухгалтерские записи</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <div class="container mt-4">
+    <div class="container mt-4 fade-in">
+        <a href="{{ route('dashboard') }}">
+            <button class="btn-minimal">Go to Dashboard</button>
+        </a>
         @yield('content')
     </div>
 </body>
