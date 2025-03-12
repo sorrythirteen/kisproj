@@ -127,6 +127,25 @@
         .navbar-nav.ml-auto {
             margin-left: auto !important;
         }
+
+        /* Стиль для сообщения о копировании */
+        #copy-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        #copy-notification.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -171,5 +190,24 @@
         </a>
         @yield('content')
     </div>
+
+    <!-- Уведомление о копировании -->
+    <div id="copy-notification">Скопировано!</div>
+
+    <script>
+        document.addEventListener('copy', function(event) {
+            // Убираем выделение после копирования
+            window.getSelection().removeAllRanges();
+
+            // Показываем уведомление
+            const notification = document.getElementById('copy-notification');
+            notification.classList.add('show');
+
+            // Скрываем уведомление через 1.5 секунды
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
