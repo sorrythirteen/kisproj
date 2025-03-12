@@ -6,12 +6,20 @@
     <title>Лесопилка</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        ::selection {
+            background: #617d8a; /* Цвет фона выделения */
+            color: #fff; /* Цвет текста при выделении */
+        }
+        ::-ms-selection {
+            background: #617d8a;
+            color: #fff;
+        }
         body, html {
             height: 100%;
             margin: 0;
         }
         body {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Franklin Gothic Medium', monospace;
             color: #333;
             margin: 0;
             padding: 0;
