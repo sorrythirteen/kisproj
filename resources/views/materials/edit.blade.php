@@ -18,7 +18,7 @@
             <label for="quantity">Количество</label>
             <input type="number" name="quantity" class="form-control" value="{{ $material->quantity }}" required>
         </div>
-        <button type="submit" class="btn-outline mr-2">Обновить</button>
+        <button type="submit" class="btn-minimal">Обновить</button>
     </form>
 </div>
 @endsection

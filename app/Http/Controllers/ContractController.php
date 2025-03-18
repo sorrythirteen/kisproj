@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use App\Exports\ContractsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use App\Models\Material;
 
 class ContractController extends Controller
 {
@@ -17,23 +18,43 @@ class ContractController extends Controller
     }
 
     public function create()
-    {
-        $suppliers = Supplier::all();
-        return view('contracts.create', compact('suppliers'));
+{
+    $suppliers = Supplier::all();
+    $materials = Material::where('quantity', '>', 0)->get();
+    return view('contracts.create', compact('suppliers', 'materials'));
+}
+
+
+public function store(Request $request)
+{
+    $request->validate([
+        'supplier_id' => 'required',
+        'materials' => 'required|array',
+        'materials.*.id' => 'required|exists:materials,id',
+        'materials.*.quantity' => 'required|integer|min:1',
+        'delivery_date' => 'required',
+    ]);
+
+    $totalAmount = 0;
+    foreach ($request->materials as $materialData) {
+        $material = Material::find($materialData['id']);
+        $totalAmount += $material->price * $materialData['quantity'];
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'supplier_id' => 'required',
-            'amount' => 'required',
-            'quantity' => 'required',
-            'delivery_date' => 'required',
-        ]);
+    $contract = Contract::create([
+        'supplier_id' => $request->supplier_id,
+        'amount' => $totalAmount,
+        'delivery_date' => $request->delivery_date,
+    ]);
 
-        Contract::create($request->except('_token'));
-        return redirect()->route('contracts.index')->with('success', 'Contract created successfully.');
+    foreach ($request->materials as $materialData) {
+        $contract->materials()->attach($materialData['id'], ['quantity' => $materialData['quantity']]);
     }
+
+    return redirect()->route('contracts.index')->with('success', 'Contract created successfully.');
+}
+
+
 
     public function show(Contract $contract)
     {
@@ -41,24 +62,45 @@ class ContractController extends Controller
     }
 
     public function edit(Contract $contract)
-    {
-        $suppliers = Supplier::all();
-        return view('contracts.edit', compact('contract', 'suppliers'));
-    }
+{
+    $suppliers = Supplier::all();
+    $materials = Material::where('quantity', '>', 0)->get();
+    return view('contracts.edit', compact('contract', 'suppliers', 'materials'));
+}
 
-    public function update(Request $request, Contract $contract)
+
+public function update(Request $request, Contract $contract)
 {
     $request->validate([
         'supplier_id' => 'required',
-        'amount' => 'required',
-        'quantity' => 'required',
+        'materials' => 'required|array',
+        'materials.*.id' => 'required|exists:materials,id',
+        'materials.*.quantity' => 'required|integer|min:1',
         'delivery_date' => 'required',
-        'status' => 'required|in:in_progress,completed', // Проверка на допустимые значения статуса
+        'status' => 'required|in:in_progress,completed',
     ]);
 
-    $contract->update($request->except('_token'));
+    $totalAmount = 0;
+    foreach ($request->materials as $materialData) {
+        $material = Material::find($materialData['id']);
+        $totalAmount += $material->price * $materialData['quantity'];
+    }
+
+    $contract->update([
+        'supplier_id' => $request->supplier_id,
+        'amount' => $totalAmount,
+        'delivery_date' => $request->delivery_date,
+        'status' => $request->status,
+    ]);
+
+    $contract->materials()->detach();
+    foreach ($request->materials as $materialData) {
+        $contract->materials()->attach($materialData['id'], ['quantity' => $materialData['quantity']]);
+    }
+
     return redirect()->route('contracts.index')->with('success', 'Contract updated successfully.');
 }
+
 
 
     public function destroy(Contract $contract)

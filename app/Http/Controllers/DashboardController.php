@@ -5,19 +5,39 @@ namespace App\Http\Controllers;
 use App\Models\Contract;
 use App\Models\Material;
 use App\Models\AccountingEntry;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $totalMaterials = Material::sum('quantity');
-        $totalCost = Contract::sum('amount');
+        $totalMaterials = Material::count();
+        $totalCost = Material::sum('price');
         $totalAccountingEntries = AccountingEntry::count();
-        $totalSuppliers = \App\Models\Supplier::count();
+        $totalSuppliers = Supplier::count();
         $totalContracts = Contract::count();
         $totalMaterialsValue = Material::sum('price');
-
-        return view('dashboard.index', compact('totalMaterials', 'totalCost', 'totalAccountingEntries', 'totalSuppliers', 'totalContracts', 'totalMaterialsValue'));
+    
+        // Получаем данные для графика
+        $materialNames = [];
+        $materialQuantities = [];
+    
+        $materials = Material::all();
+        foreach ($materials as $material) {
+            $materialNames[] = $material->name;
+            $materialQuantities[] = $material->quantity;
+        }
+    
+        return view('dashboard.index', compact(
+            'totalMaterials',
+            'totalCost',
+            'totalAccountingEntries',
+            'totalSuppliers',
+            'totalContracts',
+            'totalMaterialsValue',
+            'materialNames',
+            'materialQuantities'
+        ));
     }
 }

@@ -22,7 +22,7 @@
             <label for="payment_date">Дата оплаты</label>
             <input type="date" name="payment_date" class="form-control" value="{{ $accountingEntry->payment_date }}" required>
         </div>
-        <button type="submit" class="btn-outline mr-2">Обновить</button>
+        <button type="submit" class="btn-minimal">Обновить</button>
     </form>
 </div>
 @endsection

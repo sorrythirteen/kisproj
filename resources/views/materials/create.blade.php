@@ -17,7 +17,7 @@
             <label for="quantity">Количество</label>
             <input type="number" name="quantity" class="form-control" required>
         </div>
-        <button type="submit" class="btn-outline">Добавить</button>
+        <button type="submit" class="btn-minimal">Добавить</button>
     </form>
 </div>
 @endsection

@@ -29,7 +29,7 @@ class ContractsExport implements FromCollection, WithHeadings, WithMapping
     public function map($contract): array
     {
         return [
-            $contract->supplier->name, // Имя поставщика
+            $contract->supplier->name, 
             $contract->amount,
             $contract->quantity,
             $contract->delivery_date,
