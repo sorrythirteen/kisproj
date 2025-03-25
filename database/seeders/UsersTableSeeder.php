@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('admin'), // Установите здесь нужный пароль
+            'password' => Hash::make('admin'), 
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),

@@ -35,6 +35,7 @@
                         <div class="d-flex justify-content-center">
                             <a href="{{ route('contracts.show', $contract->id) }}" class="btn-minimal">Просмотр</a>
                             <a href="{{ route('contracts.edit', $contract->id) }}" class="btn-minimal">Редактировать</a>
+                            <a href="{{ route('contracts.export.word', $contract->id) }}" class="btn-minimal">Экспорт в Word</a>
                             <form action="{{ route('contracts.destroy', $contract->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')

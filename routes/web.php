@@ -30,3 +30,4 @@ Route::get('export-contracts', [ContractController::class, 'exportContracts'])->
 Route::get('/search', [DataController::class, 'search'])->name('data.search');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/examplebtn', [DemoController::class, 'index'])->name('examplebtn.index');
+Route::get('/contracts/{contract}/export/word', [ContractController::class, 'exportWord'])->name('contracts.export.word');
